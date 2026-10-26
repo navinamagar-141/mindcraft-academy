@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #0d0d0e;
+  color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  background: #0d0d0e;
+  color: #ffffff;
+  font-family: var(--font-open-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #ffffff;
+  color: #0d0d0e;
+}
+
+.hero-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black, transparent 95%);
+}
+
+.hero-photo {
+  background: #121212;
+}
+
+.culture-photo-one {
+  background-image: linear-gradient(180deg, rgba(18, 18, 18, 0.08) 20%, rgba(18, 18, 18, 0.9) 100%),
+    url("https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=85");
+  filter: grayscale(1);
+}
+
+.culture-photo-two {
+  background-image: linear-gradient(180deg, rgba(18, 18, 18, 0.08) 20%, rgba(18, 18, 18, 0.9) 100%),
+    url("https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1000&q=85");
+  filter: grayscale(1);
+}
+
+.culture-photo-three {
+  background-image: linear-gradient(180deg, rgba(18, 18, 18, 0.08) 20%, rgba(18, 18, 18, 0.9) 100%),
+    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85");
+  filter: grayscale(1);
+}
+
+.culture-photo-one,
+.culture-photo-two,
+.culture-photo-three {
+  background-position: center;
+  background-size: cover;
+}
+
+.code-window {
+  background: #121212;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+}
+
+.track-tab[aria-selected="true"] {
+  color: #0d0d0e;
+  border-color: #ffffff;
+  background: #ffffff;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+}
+
+.focus-ring:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 3px;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  #syllabus-print,
+  #syllabus-print * {
+    visibility: visible !important;
+  }
+
+  #syllabus-print {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    border: 0;
+    background: #fff;
+    color: #000;
+  }
+
+  #syllabus-print h2,
+  #syllabus-print h3,
+  #syllabus-print p,
+  #syllabus-print li,
+  #syllabus-print span {
+    color: #000 !important;
+  }
+
+  #syllabus-print li {
+    break-inside: avoid;
+    border-color: #bbb;
+    background: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
