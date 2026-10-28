@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
 import BrandLogo from "@/components/BrandLogo";
 import { useConsultationModal } from "@/components/ConsultationProvider";
@@ -24,10 +25,55 @@ const links = [
   ["About", "/about"],
 ];
 
+const blogLinks = [
+  ["All Articles", "/blog"],
+  ["Students Blog", "/blog/students"],
+  ["Teachers Blog", "/blog/teachers"],
+  ["Team Blog", "/blog/team"],
+];
+
 export default function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [studyOpen, setStudyOpen] = useState(false);
+  const [openBlogPath, setOpenBlogPath] = useState<string | null>(null);
   const openConsultation = useConsultationModal();
+  const pathname = usePathname();
+  const blogOpen = openBlogPath === pathname;
+  const blogDropdownRef = useRef<HTMLDivElement>(null);
+  const blogTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobileBlogDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileBlogTriggerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!blogOpen) return;
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (
+        event.target instanceof Node &&
+        !blogDropdownRef.current?.contains(event.target) &&
+        !mobileBlogDropdownRef.current?.contains(event.target)
+      ) {
+        setOpenBlogPath(null);
+      }
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenBlogPath(null);
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          blogTriggerRef.current?.focus();
+        } else {
+          mobileBlogTriggerRef.current?.focus();
+        }
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [blogOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-frame-line bg-canvas/95 backdrop-blur-lg">
@@ -44,8 +90,47 @@ export default function SiteNav() {
               ))}
             </div>
           </div>
+          <div
+            ref={blogDropdownRef}
+            className="group relative flex h-full items-center"
+            onMouseEnter={() => setOpenBlogPath(pathname)}
+            onMouseLeave={() => setOpenBlogPath(null)}
+          >
+            <button
+              ref={blogTriggerRef}
+              type="button"
+              aria-expanded={blogOpen}
+              aria-controls="blog-navigation-dropdown"
+              onClick={() => setOpenBlogPath(pathname)}
+              className={`focus-ring inline-flex items-center gap-2 text-sm font-semibold transition hover:text-white ${pathname.startsWith("/blog") ? "text-white" : "text-secondary"}`}
+            >
+              Blog <ArrowDown size={14} className={`transition ${blogOpen ? "rotate-180" : ""}`} aria-hidden="true" />
+            </button>
+            <div
+              id="blog-navigation-dropdown"
+              className={`absolute left-0 top-[calc(100%-8px)] max-h-[70vh] w-[min(28rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl border border-line bg-surface p-2 shadow-2xl transition ${blogOpen ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0"}`}
+            >
+              {blogLinks.map(([label, href]) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpenBlogPath(null)}
+                  aria-current={pathname === href ? "page" : undefined}
+                  className="focus-ring block rounded-xl px-4 py-3 text-sm font-semibold text-secondary transition hover:bg-white/5 hover:text-white focus-visible:bg-white/5 focus-visible:text-white"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
           {links.map(([label, href]) => (
-            <Link key={href} href={href} className="text-sm font-semibold text-secondary transition hover:text-white">{label}</Link>
+            <Link
+              key={href}
+              href={href}
+              className="text-sm font-semibold text-secondary transition hover:text-white"
+            >
+              {label}
+            </Link>
           ))}
         </div>
         <button
@@ -84,8 +169,45 @@ export default function SiteNav() {
                 ))}
               </div>
             )}
+            <div ref={mobileBlogDropdownRef}>
+              <button
+                ref={mobileBlogTriggerRef}
+                type="button"
+                aria-expanded={blogOpen}
+                aria-controls="mobile-blog-navigation"
+                onClick={() => setOpenBlogPath((isOpen) => isOpen === pathname ? null : pathname)}
+                className={`focus-ring flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm font-semibold transition hover:text-white ${pathname.startsWith("/blog") ? "text-white" : "text-secondary"}`}
+              >
+                Blog <ArrowDown size={15} className={`transition ${blogOpen ? "rotate-180" : ""}`} aria-hidden="true" />
+              </button>
+              {blogOpen && (
+                <div id="mobile-blog-navigation" className="max-h-[45vh] overflow-y-auto">
+                  {blogLinks.map(([label, href]) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        setOpenBlogPath(null);
+                      }}
+                      aria-current={pathname === href ? "page" : undefined}
+                      className="focus-ring block rounded-xl py-2.5 pl-6 pr-3 text-sm leading-5 text-secondary transition hover:bg-white/5 hover:text-white"
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             {links.map(([label, href]) => (
-              <Link key={href} href={href} onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-3 text-sm font-semibold text-secondary transition hover:text-white">{label}</Link>
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-xl px-3 py-3 text-sm font-semibold text-secondary transition hover:text-white"
+              >
+                {label}
+              </Link>
             ))}
             <button type="button" onClick={() => {
               setMenuOpen(false);
