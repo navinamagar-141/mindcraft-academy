@@ -23,7 +23,7 @@ export default function SiteFooter() {
             <div className="mt-4 grid gap-3 text-sm text-secondary">
               <Link href="/programs" className="transition hover:text-white">Mentorship Intern Programs</Link>
               <Link href="/projects" className="transition hover:text-white">Student projects</Link>
-              <Link href="/culture" className="transition hover:text-white">Campus culture</Link>
+              <Link href="/culture" className="transition hover:text-white">Office culture</Link>
               <Link href="/about" className="transition hover:text-white">About MindCraft</Link>
             </div>
           </div>
