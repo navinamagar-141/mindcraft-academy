@@ -4,8 +4,19 @@
 
 :root {
   color-scheme: dark;
-  background: #0d0d0e;
-  color: #ffffff;
+  --color-page: 30 30 30;
+  --color-surface: 38 38 40;
+  --color-panel: 38 38 40;
+  --color-frame: 28 28 29;
+  --color-frame-line: 44 44 46;
+  --color-feature: 35 35 37;
+  --color-line: 51 51 54;
+  --color-white: 255 255 255;
+  --color-black: 0 0 0;
+  --color-secondary: 168 168 172;
+  --color-logo-silver: 128 128 128;
+  background: rgb(var(--color-page));
+  color: rgb(var(--color-white));
 }
 
 * {
@@ -19,42 +30,62 @@ html {
 
 body {
   margin: 0;
-  background: #0d0d0e;
-  color: #ffffff;
+  background: rgb(var(--color-page));
+  color: rgb(var(--color-white));
   font-family: var(--font-open-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: #ffffff;
-  color: #0d0d0e;
+  background: rgb(var(--color-white));
+  color: rgb(var(--color-black));
 }
 
 .hero-grid {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: linear-gradient(to bottom, black, transparent 95%);
+  overflow: hidden;
+  background-color: rgb(var(--color-feature));
+  background-image: radial-gradient(circle, rgb(var(--color-white) / 0.055) 0.5px, transparent 0.7px);
+  background-size: 5px 5px;
+  mask-image: linear-gradient(to bottom, black 0%, black 58%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-grid::before,
+.hero-grid::after {
+  position: absolute;
+  inset: -15% -10%;
+  content: "";
+  pointer-events: none;
+}
+
+.hero-grid::before {
+  background: linear-gradient(132deg, transparent 30%, rgb(36 36 38 / 0.7) 30.2%, rgb(36 36 38 / 0.35) 47%, transparent 47.2%);
+  filter: blur(1px);
+}
+
+.hero-grid::after {
+  background: linear-gradient(132deg, transparent 57%, rgb(36 36 38 / 0.55) 57.2%, rgb(36 36 38 / 0.2) 70%, transparent 70.2%);
+  filter: blur(2px);
 }
 
 .hero-photo {
-  background: #121212;
+  background: rgb(var(--color-surface));
 }
 
 .code-window {
-  background: #121212;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+  background: rgb(var(--color-panel));
+  box-shadow: 0 28px 80px rgb(var(--color-black) / 0.35);
 }
 
 .track-tab[aria-selected="true"] {
-  color: #0d0d0e;
-  border-color: #ffffff;
-  background: #ffffff;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+  color: rgb(var(--color-black));
+  border-color: rgb(var(--color-white));
+  background: rgb(var(--color-white));
+  box-shadow: 0 5px 18px rgb(var(--color-black) / 0.2);
 }
 
 .focus-ring:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.65);
+  outline: 3px solid rgb(var(--color-white) / 0.65);
   outline-offset: 3px;
 }
 
@@ -73,8 +104,8 @@ body {
     inset: 0;
     width: 100%;
     border: 0;
-    background: #fff;
-    color: #000;
+    background: rgb(var(--color-white));
+    color: rgb(var(--color-black));
   }
 
   #syllabus-print h2,
@@ -82,13 +113,13 @@ body {
   #syllabus-print p,
   #syllabus-print li,
   #syllabus-print span {
-    color: #000 !important;
+    color: rgb(var(--color-black)) !important;
   }
 
   #syllabus-print li {
     break-inside: avoid;
-    border-color: #bbb;
-    background: #fff;
+    border-color: rgb(var(--color-line));
+    background: rgb(var(--color-white));
   }
 }
 
