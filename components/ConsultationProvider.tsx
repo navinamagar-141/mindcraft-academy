@@ -168,20 +168,20 @@ function ConsultationModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="consultation-title"
-        className="relative my-auto w-full max-w-2xl rounded-2xl border border-white/15 bg-[#121212] p-6 text-white shadow-2xl sm:p-8"
+        className="relative my-auto w-full max-w-2xl rounded-2xl border border-line bg-surface p-6 text-white shadow-2xl sm:p-8"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close consultation dialog"
           disabled={status.kind === "loading"}
-          className="focus-ring absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/75 transition hover:bg-white/10 hover:text-white disabled:opacity-50"
+          className="focus-ring absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-line text-secondary transition hover:bg-white/10 hover:text-white disabled:opacity-50"
         >
           <X size={19} aria-hidden="true" />
         </button>
-        <p className="font-display text-xs font-bold uppercase tracking-[0.18em] text-white/55">Start a conversation</p>
+        <p className="font-display text-xs font-bold uppercase tracking-[0.18em] text-secondary">Start a conversation</p>
         <h2 id="consultation-title" className="mt-2 pr-10 font-display text-2xl font-bold text-white sm:text-3xl">Book a consultation</h2>
-        <p className="mt-2 text-sm leading-6 text-white/60">Choose WhatsApp or send your details and optional CV to the MindCraft Academy team.</p>
+        <p className="mt-2 text-sm leading-6 text-secondary">Choose WhatsApp or send your details and optional CV to the MindCraft Academy team.</p>
 
         <a
           href={whatsappUrl}
@@ -194,7 +194,7 @@ function ConsultationModal({
           <ArrowUpRight size={16} aria-hidden="true" />
         </a>
 
-        <div className="my-6 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.16em] text-white/40">
+        <div className="my-6 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
           <span className="h-px flex-1 bg-white/10" />
           Or apply with a form and CV
           <span className="h-px flex-1 bg-white/10" />
@@ -203,40 +203,40 @@ function ConsultationModal({
         <form className="grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
           <fieldset disabled={status.kind === "loading"} className="contents">
             <div>
-              <label htmlFor="consultation-name" className="mb-1.5 block text-xs font-semibold text-white/80">Full name *</label>
-              <input ref={nameInput} id="consultation-name" name="name" type="text" autoComplete="name" required maxLength={100} className="focus-ring w-full rounded-lg border border-white/15 bg-black px-3.5 py-3 text-sm text-white placeholder:text-white/35" placeholder="Your full name" />
+              <label htmlFor="consultation-name" className="mb-1.5 block text-xs font-semibold text-secondary">Full name *</label>
+              <input ref={nameInput} id="consultation-name" name="name" type="text" autoComplete="name" required maxLength={100} className="focus-ring w-full rounded-lg border border-line bg-black px-3.5 py-3 text-sm text-white placeholder:text-secondary" placeholder="Your full name" />
             </div>
             <div>
-              <label htmlFor="consultation-email" className="mb-1.5 block text-xs font-semibold text-white/80">Email *</label>
-              <input id="consultation-email" name="email" type="email" autoComplete="email" required maxLength={254} className="focus-ring w-full rounded-lg border border-white/15 bg-black px-3.5 py-3 text-sm text-white placeholder:text-white/35" placeholder="you@example.com" />
+              <label htmlFor="consultation-email" className="mb-1.5 block text-xs font-semibold text-secondary">Email *</label>
+              <input id="consultation-email" name="email" type="email" autoComplete="email" required maxLength={254} className="focus-ring w-full rounded-lg border border-line bg-black px-3.5 py-3 text-sm text-white placeholder:text-secondary" placeholder="you@example.com" />
             </div>
             <div>
-              <label htmlFor="consultation-phone" className="mb-1.5 block text-xs font-semibold text-white/80">Phone or WhatsApp *</label>
-              <input id="consultation-phone" name="phone" type="tel" autoComplete="tel" required minLength={7} maxLength={24} pattern={"(?:[0-9]|\\+|\\(|\\)|\\.| |-){7,24}"} title="Enter a phone number using digits, spaces, +, parentheses, periods, or hyphens." className="focus-ring w-full rounded-lg border border-white/15 bg-black px-3.5 py-3 text-sm text-white placeholder:text-white/35" placeholder="+977 9800000000" />
+              <label htmlFor="consultation-phone" className="mb-1.5 block text-xs font-semibold text-secondary">Phone or WhatsApp *</label>
+              <input id="consultation-phone" name="phone" type="tel" autoComplete="tel" required minLength={7} maxLength={24} pattern={"(?:[0-9]|\\+|\\(|\\)|\\.| |-){7,24}"} title="Enter a phone number using digits, spaces, +, parentheses, periods, or hyphens." className="focus-ring w-full rounded-lg border border-line bg-black px-3.5 py-3 text-sm text-white placeholder:text-secondary" placeholder="+977 9800000000" />
             </div>
             <div>
-              <label htmlFor="consultation-program" className="mb-1.5 block text-xs font-semibold text-white/80">Interested program *</label>
-              <select id="consultation-program" name="program" required defaultValue={options.programSlug ?? ""} className="focus-ring w-full rounded-lg border border-white/15 bg-black px-3.5 py-3 text-sm text-white">
+              <label htmlFor="consultation-program" className="mb-1.5 block text-xs font-semibold text-secondary">Interested program *</label>
+              <select id="consultation-program" name="program" required defaultValue={options.programSlug ?? ""} className="focus-ring w-full rounded-lg border border-line bg-black px-3.5 py-3 text-sm text-white">
                 <option value="" disabled>Select a program</option>
                 {programs.map((program) => <option key={program.slug} value={program.slug}>{program.title}</option>)}
               </select>
             </div>
             <div>
-              <label htmlFor="consultation-tier" className="mb-1.5 block text-xs font-semibold text-white/80">Preferred tier *</label>
-              <select id="consultation-tier" name="tier" required defaultValue={options.tier ?? ""} className="focus-ring w-full rounded-lg border border-white/15 bg-black px-3.5 py-3 text-sm text-white">
+              <label htmlFor="consultation-tier" className="mb-1.5 block text-xs font-semibold text-secondary">Preferred tier *</label>
+              <select id="consultation-tier" name="tier" required defaultValue={options.tier ?? ""} className="focus-ring w-full rounded-lg border border-line bg-black px-3.5 py-3 text-sm text-white">
                 <option value="" disabled>Select a tier</option>
                 <option value="Basic">Basic · 6 weeks</option>
                 <option value="Advanced">Advanced · 10 weeks</option>
               </select>
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="consultation-cv" className="mb-1.5 block text-xs font-semibold text-white/80">CV upload <span className="font-normal text-white/45">(optional)</span></label>
-              <input id="consultation-cv" name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" className="focus-ring w-full rounded-lg border border-white/15 bg-black px-3.5 py-2.5 text-sm text-white/70 file:mr-4 file:rounded-md file:border-0 file:bg-white file:px-3 file:py-2 file:text-xs file:font-bold file:text-black" />
-              <p className="mt-2 text-xs leading-5 text-white/45">PDF, DOC, or DOCX. Maximum 4 MB per file.</p>
+              <label htmlFor="consultation-cv" className="mb-1.5 block text-xs font-semibold text-secondary">CV upload <span className="font-normal text-secondary">(optional)</span></label>
+              <input id="consultation-cv" name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" className="focus-ring w-full rounded-lg border border-line bg-ink px-3.5 py-2.5 text-sm text-secondary file:mr-4 file:rounded-md file:border-0 file:bg-white file:px-3 file:py-2 file:text-xs file:font-bold file:text-black" />
+              <p className="mt-2 text-xs leading-5 text-secondary">PDF, DOC, or DOCX. Maximum 4 MB per file.</p>
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="consultation-goal" className="mb-1.5 block text-xs font-semibold text-white/80">What would you like to achieve? *</label>
-              <textarea id="consultation-goal" name="goal" required maxLength={500} rows={3} className="focus-ring w-full resize-y rounded-lg border border-white/15 bg-black px-3.5 py-3 text-sm text-white placeholder:text-white/35" placeholder="Briefly share your goals for the mentorship program." />
+              <label htmlFor="consultation-goal" className="mb-1.5 block text-xs font-semibold text-secondary">What would you like to achieve? *</label>
+              <textarea id="consultation-goal" name="goal" required maxLength={500} rows={3} className="focus-ring w-full resize-y rounded-lg border border-line bg-black px-3.5 py-3 text-sm text-white placeholder:text-secondary" placeholder="Briefly share your goals for the mentorship program." />
             </div>
             <div className="sr-only" aria-hidden="true">
               <label htmlFor="consultation-website">Leave this field empty</label>
@@ -252,7 +252,7 @@ function ConsultationModal({
           <p
             role={status.kind === "error" ? "alert" : "status"}
             className={`mt-4 rounded-lg border p-3 text-sm leading-6 ${
-              status.kind === "error" ? "border-white/30 bg-white/10 text-white" : "border-white/15 bg-white/5 text-white/75"
+              status.kind === "error" ? "border-white/30 bg-white/10 text-white" : "border-line bg-white/5 text-secondary"
             }`}
           >
             {status.message}
