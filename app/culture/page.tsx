@@ -21,7 +21,7 @@ export default function CulturePage() {
       <section className="relative overflow-hidden border-b border-line">
         <div className="hero-grid absolute inset-0" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8">
-          <p className="font-display text-xs font-extrabold uppercase tracking-[0.22em] text-white">CAMPUS CULTURE</p>
+          <p className="font-display text-xs font-extrabold uppercase tracking-[0.22em] text-white">OFFICE CULTURE</p>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-white sm:text-4xl">Good work happens together.</h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-secondary sm:text-lg">Ask questions out loud. Pair on a stubborn bug. Celebrate the small wins. Learning gets better when you don’t have to do it alone.</p>
         </div>
