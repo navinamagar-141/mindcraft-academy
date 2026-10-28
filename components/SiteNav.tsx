@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
 import BrandLogo from "@/components/BrandLogo";
+import { useConsultationModal } from "@/components/ConsultationProvider";
 
 const studyAreas = [
   ["MERN Stack Mentorship Intern Program", "/programs/mern-stack"],
-  ["Full-Stack Development Mentor Internship Program", "/programs/full-stack-development"],
+  ["Full Stack Development Mentor Internship Program", "/programs/full-stack-development"],
   ["Python Mentorship Intern Program", "/programs/python"],
   ["Frontend Development Mentor Internship Program", "/programs/frontend-development"],
   ["Backend Development Mentorship Intern Program", "/programs/backend-development"],
@@ -26,6 +27,7 @@ const links = [
 export default function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [studyOpen, setStudyOpen] = useState(false);
+  const openConsultation = useConsultationModal();
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#121212]/95 backdrop-blur-lg">
@@ -46,12 +48,13 @@ export default function SiteNav() {
             <Link key={href} href={href} className="text-sm font-semibold text-white/80 transition hover:text-white">{label}</Link>
           ))}
         </div>
-        <a
-          href="tel:+9779802858781"
+        <button
+          type="button"
+          onClick={() => openConsultation()}
           className="focus-ring hidden items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-neutral-200 lg:inline-flex"
         >
           Book consultation <ArrowUpRight size={16} aria-hidden="true" />
-        </a>
+        </button>
         <button
           type="button"
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -84,9 +87,12 @@ export default function SiteNav() {
             {links.map(([label, href]) => (
               <Link key={href} href={href} onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-3 text-sm font-semibold text-white/80 transition hover:text-white">{label}</Link>
             ))}
-            <a href="tel:+9779802858781" onClick={() => setMenuOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-sm font-bold text-black transition hover:bg-neutral-200">
+            <button type="button" onClick={() => {
+              setMenuOpen(false);
+              openConsultation();
+            }} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-sm font-bold text-black transition hover:bg-neutral-200">
               Book consultation <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       )}

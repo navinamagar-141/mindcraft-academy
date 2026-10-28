@@ -14,7 +14,7 @@ const workflowSteps = [
       { text: "const", tone: "text-white" },
       { text: " answer = await model.generate(prompt);" },
       { text: "\nreturn answer;", tone: "text-white/65" },
-      { text: "\n// verify before shipping", tone: "text-white/35" },
+      { text: "\nverify before shipping", tone: "text-white/35" },
     ],
   },
   {
@@ -72,8 +72,8 @@ export default function AIWorkflow() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
-            <p className="font-display text-xs font-extrabold uppercase tracking-[0.22em] text-white/65">{"//"} PRACTICAL AI WORKFLOW</p>
-            <h2 className="mt-4 font-display text-3xl font-black uppercase leading-tight tracking-[-0.045em] text-white sm:text-4xl lg:text-5xl">Self-correction is part of the build.</h2>
+            <p className="font-display text-xs font-extrabold uppercase tracking-[0.22em] text-white/65">PRACTICAL AI WORKFLOW</p>
+            <h2 className="mt-4 font-display text-3xl font-bold uppercase leading-tight tracking-tight text-white sm:text-4xl">Self correction is part of the build.</h2>
           </div>
           <p className="max-w-md text-sm leading-6 text-white/55">Treat AI output as a first draft. Inspect the result, improve the context, and validate before you ship.</p>
         </div>
@@ -83,14 +83,14 @@ export default function AIWorkflow() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#2e2e33] pb-5">
               <div className="flex items-center gap-2 text-sm font-bold text-white">
                 <Code2 size={17} className="text-white/70" aria-hidden="true" />
-                Self-Correction Loop
+                Self Correction Loop
               </div>
               <span className="inline-flex items-center gap-2 rounded-full border border-[#2e2e33] bg-[#121212] px-3 py-1.5 font-mono text-[10px] text-white/55">
                 <span className="h-1.5 w-1.5 rounded-full bg-white/65" /> WORKFLOW PREVIEW
               </span>
             </div>
 
-            <div className="mt-5 grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Self-correction workflow steps">
+            <div className="mt-5 grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Self correction workflow steps">
               {workflowSteps.map((step, index) => (
                 <button
                   key={step.id}

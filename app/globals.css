@@ -41,31 +41,6 @@ body {
   background: #121212;
 }
 
-.culture-photo-one {
-  background-image: linear-gradient(180deg, rgba(18, 18, 18, 0.08) 20%, rgba(18, 18, 18, 0.9) 100%),
-    url("https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=85");
-  filter: grayscale(1);
-}
-
-.culture-photo-two {
-  background-image: linear-gradient(180deg, rgba(18, 18, 18, 0.08) 20%, rgba(18, 18, 18, 0.9) 100%),
-    url("https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1000&q=85");
-  filter: grayscale(1);
-}
-
-.culture-photo-three {
-  background-image: linear-gradient(180deg, rgba(18, 18, 18, 0.08) 20%, rgba(18, 18, 18, 0.9) 100%),
-    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85");
-  filter: grayscale(1);
-}
-
-.culture-photo-one,
-.culture-photo-two,
-.culture-photo-three {
-  background-position: center;
-  background-size: cover;
-}
-
 .code-window {
   background: #121212;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);

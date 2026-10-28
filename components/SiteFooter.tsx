@@ -10,7 +10,10 @@ export default function SiteFooter() {
           <div>
             <BrandLogo />
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/55">Discover. Develop. Deploy.<br />Practical tech education for people ready to make things real.</p>
-            <p className="mt-4 font-display text-xs font-bold italic text-white">“Talk is cheap. Show me the code.”</p>
+            <figure className="mt-4">
+              <blockquote className="font-display text-xs font-bold italic text-white">“Talk is cheap. Show me the code.”</blockquote>
+              <figcaption className="mt-1 text-xs text-white/55">Linus Torvalds</figcaption>
+            </figure>
           </div>
           <div>
             <h2 className="font-display text-sm font-extrabold">Explore</h2>

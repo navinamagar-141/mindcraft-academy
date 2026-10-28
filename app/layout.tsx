@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Open_Sans } from "next/font/google";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
+import ConsultationProvider from "@/components/ConsultationProvider";
 import { programKeywords } from "@/lib/programs";
 import "./globals.css";
 
@@ -36,9 +37,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${openSans.variable} ${montserrat.variable}`}>
-        <SiteNav />
-        {children}
-        <SiteFooter />
+        <ConsultationProvider>
+          <SiteNav />
+          {children}
+          <SiteFooter />
+        </ConsultationProvider>
       </body>
     </html>
   );

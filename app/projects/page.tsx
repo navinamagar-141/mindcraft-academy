@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    category: "FULL-STACK · COMMUNITY",
+    category: "FULL STACK · COMMUNITY",
     name: "Local Loop",
     description: "A neighborhood directory that brings Pokhara’s makers, shops, and services into one searchable place.",
     stack: "Next.js · PostgreSQL · Mapbox",
@@ -43,9 +43,9 @@ export default function ProjectsPage() {
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="hero-grid absolute inset-0" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8">
-          <p className="font-display text-xs font-extrabold uppercase tracking-[0.22em] text-white">{"//"} PROJECTS OVER PAPERS</p>
-          <h1 className="mt-5 max-w-4xl font-display text-4xl font-black uppercase leading-[1.02] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">Make something<br /><span className="text-white">worth showing.</span></h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-white/60 sm:text-lg">A portfolio should show how you think, what you made, and why it matters. Explore example project concepts built around real-world skills.</p>
+          <p className="font-display text-xs font-extrabold uppercase tracking-[0.22em] text-white">PROJECTS OVER PAPERS</p>
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-bold uppercase leading-tight tracking-tight text-white sm:text-4xl">Make something worth showing.</h1>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-white/60 sm:text-lg">A portfolio should show how you think, what you made, and why it matters. Explore example project concepts built around real world skills.</p>
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 py-14 lg:px-8 sm:py-20">
@@ -74,7 +74,7 @@ export default function ProjectsPage() {
         </div>
         <p className="mt-5 text-center text-xs text-white/40">These are illustrative project concepts, not claims of completed student work or live deployments.</p>
         <div className="mt-14 flex flex-col justify-between gap-5 rounded-2xl border border-white/10 bg-surface p-7 sm:flex-row sm:items-center sm:p-9">
-          <div><p className="font-display text-xs font-extrabold uppercase tracking-[0.18em] text-white">{"//"} YOUR TURN</p><h2 className="mt-2 font-display text-2xl font-extrabold text-white">Start with an idea. Leave with a project.</h2></div>
+          <div><p className="font-display text-xs font-extrabold uppercase tracking-[0.18em] text-white">YOUR TURN</p><h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-white">Start with an idea. Leave with a project.</h2></div>
           <Link href="/programs" className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-neutral-200">Explore programs <ArrowUpRight size={16} aria-hidden="true" /></Link>
         </div>
       </section>
