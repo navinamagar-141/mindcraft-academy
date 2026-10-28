@@ -17,7 +17,7 @@ export default function ProgramsPage() {
     <main>
       <section className="border-b border-white/10 bg-[#121212]">
         <div className="mx-auto max-w-7xl px-5 py-14 sm:py-16 lg:px-8">
-          <p className="font-display text-xs font-bold uppercase tracking-[0.18em] text-[#808080]">{"//"} MENTORSHIP INTERN PROGRAMS</p>
+          <p className="font-display text-xs font-bold uppercase tracking-[0.18em] text-[#808080]">MENTORSHIP INTERN PROGRAMS</p>
           <h1 className="mt-4 max-w-3xl font-display text-3xl font-bold leading-tight text-white sm:text-4xl">Build practical skills with a mentor.</h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#909090]">Choose an area to explore. Each Mentor Internship Program offers a practical six-week tier or a ten-week advanced mentorship with production deployment.</p>
         </div>

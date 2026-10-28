@@ -22,7 +22,7 @@ export default function ProgramInquiry({ program }: { program: Program }) {
     const text = [
       "MIND{CRAFT} ACADEMY",
       program.title,
-      `${unlockedTier} Tier — ${unlockedTier === "Basic" ? "6 Weeks Practical Internship & Training" : "10 Weeks Deep-Dive Mentorship & Production Deployment"}`,
+      `${unlockedTier} Tier: ${unlockedTier === "Basic" ? "6 Weeks Practical Internship & Training" : "10 Weeks Deep Dive Mentorship & Production Deployment"}`,
       "",
       ...syllabus.map((week) => `${week.period}: ${week.title}\n${week.detail}\n`),
     ].join("\n");
@@ -41,7 +41,7 @@ export default function ProgramInquiry({ program }: { program: Program }) {
         <div className="flex items-start gap-4">
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-[#808080] bg-[#000000] text-[#808080]"><LockKeyhole size={19} aria-hidden="true" /></span>
           <div>
-            <p className="font-display text-xs font-bold uppercase tracking-[0.16em] text-[#808080]">{"//"} LOCKED SYLLABUS</p>
+            <p className="font-display text-xs font-bold uppercase tracking-[0.16em] text-[#808080]">LOCKED SYLLABUS</p>
             <h2 id="inquiry-heading" className="mt-2 font-display text-xl font-bold text-white">Request the detailed outline</h2>
           </div>
         </div>
@@ -69,8 +69,8 @@ export default function ProgramInquiry({ program }: { program: Program }) {
                 setUnlockedTier(null);
               }
             }} className="focus-ring w-full rounded-lg border border-[#808080] bg-[#000000] px-3.5 py-3 text-sm text-white">
-              <option value="Basic">Basic — 6 weeks</option>
-              <option value="Advanced">Advanced — 10 weeks</option>
+              <option value="Basic">Basic, 6 weeks</option>
+              <option value="Advanced">Advanced, 10 weeks</option>
             </select>
           </div>
           <button type="submit" className="focus-ring inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-sm font-bold text-black transition hover:bg-[#808080]">
@@ -87,9 +87,9 @@ export default function ProgramInquiry({ program }: { program: Program }) {
         <section id="syllabus-print" className="rounded-2xl border border-[#808080] bg-[#000000] p-6 sm:p-8" aria-live="polite" aria-labelledby="syllabus-heading">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
             <div>
-              <p className="font-display text-xs font-bold uppercase tracking-[0.16em] text-[#808080]">{"//"} SYLLABUS UNLOCKED · {syllabusTier.toUpperCase()}</p>
+              <p className="font-display text-xs font-bold uppercase tracking-[0.16em] text-[#808080]">SYLLABUS UNLOCKED · {syllabusTier.toUpperCase()}</p>
               <h2 id="syllabus-heading" className="mt-2 font-display text-xl font-bold text-white">{program.title}</h2>
-              <p className="mt-1 text-sm text-[#808080]">{syllabusTier === "Basic" ? "Basic (6 Weeks) · Practical Internship & Training" : "Advanced (10 Weeks) · Deep-Dive Mentorship & Production Deployment"}</p>
+              <p className="mt-1 text-sm text-[#808080]">{syllabusTier === "Basic" ? "Basic (6 Weeks) · Practical Internship & Training" : "Advanced (10 Weeks) · Deep Dive Mentorship & Production Deployment"}</p>
             </div>
             <div className="flex shrink-0 gap-2 print:hidden">
               <button type="button" onClick={downloadSyllabus} className="focus-ring inline-flex items-center gap-2 rounded-lg border border-[#808080] px-3 py-2 text-xs font-semibold text-white hover:bg-[#808080] hover:text-black"><Download size={14} aria-hidden="true" /> Download TXT</button>

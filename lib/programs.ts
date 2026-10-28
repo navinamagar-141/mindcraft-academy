@@ -11,7 +11,7 @@ export const programs: Program[] = [
   {
     slug: "mern-stack",
     title: "MERN Stack Mentorship Intern Program",
-    overview: "Build end-to-end web applications with MongoDB, Express, React, and Node.js, supported by practical mentorship and code reviews.",
+    overview: "Build end to end web applications with MongoDB, Express, React, and Node.js, supported by practical mentorship and code reviews.",
     focus: ["MongoDB", "Express", "React", "Node.js", "REST APIs", "Git"],
     basicWeeks: [
       { period: "Weeks 1–2", title: "Web and JavaScript foundations", detail: "Semantic HTML, responsive CSS, modern JavaScript, Git workflows, and browser debugging." },
@@ -23,12 +23,12 @@ export const programs: Program[] = [
       { period: "Weeks 3–4", title: "Production-ready React", detail: "Build accessible interfaces, robust forms, client-side data flows, and meaningful loading and error states." },
       { period: "Weeks 5–6", title: "Secure API and data layer", detail: "Implement Express APIs, MongoDB indexes, authentication patterns, authorization, and server-side validation." },
       { period: "Weeks 7–8", title: "Quality and integration", detail: "Add automated tests, logging, API documentation, and review performance and common security risks." },
-      { period: "Weeks 9–10", title: "Deployment and production review", detail: "Deploy the full-stack application, configure environment settings, monitor behavior, and present the final product." },
+      { period: "Weeks 9–10", title: "Deployment and production review", detail: "Deploy the full stack application, configure environment settings, monitor behavior, and present the final product." },
     ],
   },
   {
     slug: "full-stack-development",
-    title: "Full-Stack Development Mentor Internship Program",
+    title: "Full Stack Development Mentor Internship Program",
     overview: "Practice the complete product lifecycle by building user interfaces, backend services, persistent data, and a deployed application.",
     focus: ["TypeScript", "React", "Next.js", "Node.js", "SQL", "Deployment"],
     basicWeeks: [
@@ -47,7 +47,7 @@ export const programs: Program[] = [
   {
     slug: "python",
     title: "Python Mentorship Intern Program",
-    overview: "Develop practical Python skills through scripting, data handling, APIs, testing, and a mentor-guided application project.",
+    overview: "Develop practical Python skills through scripting, data handling, APIs, testing, and a mentor guided application project.",
     focus: ["Python", "Data structures", "Flask", "APIs", "Testing", "SQL"],
     basicWeeks: [
       { period: "Weeks 1–2", title: "Python essentials", detail: "Set up a development environment and practice variables, control flow, functions, collections, and files." },
@@ -112,7 +112,7 @@ export const programs: Program[] = [
       { period: "Weeks 1–2", title: "Research plan and synthesis", detail: "Define research questions, conduct interviews, synthesize evidence, and communicate design opportunities." },
       { period: "Weeks 3–4", title: "Information architecture", detail: "Develop flows, structure content, sketch options, and test early concepts with users." },
       { period: "Weeks 5–6", title: "Visual language and components", detail: "Create accessible visual foundations, responsive patterns, and a maintainable component library." },
-      { period: "Weeks 7–8", title: "High-fidelity prototyping", detail: "Build realistic interaction prototypes, test key workflows, and refine based on observed usability." },
+      { period: "Weeks 7–8", title: "High fidelity prototyping", detail: "Build realistic interaction prototypes, test key workflows, and refine based on observed usability." },
       { period: "Weeks 9–10", title: "Design handoff and portfolio", detail: "Document decisions, prepare developer handoff, complete the case study, and present the final experience." },
     ],
   },
