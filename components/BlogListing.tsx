@@ -69,7 +69,7 @@ export default function BlogListing({ fixedAuthorType }: { fixedAuthorType?: Blo
             <article key={post.slug} className="flex min-h-[27rem] flex-col overflow-hidden rounded-2xl border border-line bg-surface">
               <div
                 aria-hidden="true"
-                className="relative flex h-40 items-end overflow-hidden border-b border-line bg-[radial-gradient(circle_at_1px_1px,#ffffff15_1px,transparent_0)] bg-[size:12px_12px] p-5"
+                className="blog-card-pattern relative flex h-40 items-end overflow-hidden border-b border-line p-5"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/25 to-transparent" />
                 <span className="relative rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
