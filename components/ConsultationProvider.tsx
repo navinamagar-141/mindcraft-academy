@@ -18,7 +18,7 @@ type ConsultationOptions = { programSlug?: string; tier?: Tier };
 type OpenConsultation = (options?: ConsultationOptions) => void;
 type SubmissionStatus = { kind: "idle" | "loading" | "success" | "error"; message: string };
 
-const whatsappUrl = "https://wa.me/9779802858781?text=Hi%20MindCraft%20Academy%2C%20I%27d%20like%20to%20book%20a%20consultation.";
+const whatsappUrl = `https://wa.me/9779802858781?text=${encodeURIComponent("Hi MindCraft Academy! I would like to book a consultation.")}`;
 const MAX_FILE_BYTES = 4 * 1024 * 1024;
 const allowedFileTypes = new Set([
   "application/pdf",
@@ -138,7 +138,7 @@ function ConsultationModal({
       if (!response.ok) {
         setStatus({
           kind: "error",
-          message: result?.message ?? "We couldn’t send your request. Please try again.",
+          message: result?.message ?? "We couldn’t send your request. Please try again or contact us on WhatsApp.",
         });
         return;
       }
@@ -146,12 +146,12 @@ function ConsultationModal({
       form.reset();
       setStatus({
         kind: "success",
-        message: result?.message ?? "Your consultation request has been sent.",
+        message: "Thank you, we will contact you soon",
       });
     } catch {
       setStatus({
         kind: "error",
-        message: "We couldn’t reach the server. Check your connection and try again.",
+        message: "We couldn’t reach the server. Please try again or contact us on WhatsApp.",
       });
     }
   }
@@ -256,6 +256,20 @@ function ConsultationModal({
             }`}
           >
             {status.message}
+            {status.kind === "error" && (
+              <>
+                {" "}
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-white underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+                >
+                  Message us on WhatsApp
+                </a>
+                .
+              </>
+            )}
           </p>
         )}
       </section>

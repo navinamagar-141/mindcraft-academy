@@ -9,6 +9,9 @@ const MAX_REQUEST_BYTES = 4.5 * 1024 * 1024;
 const MAX_GOAL_LENGTH = 500;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_PATTERN = /^(?:[0-9]|\+|\(|\)|\.| |-){7,24}$/;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
 
 class PayloadTooLargeError extends Error {}
 
@@ -73,16 +76,51 @@ function textField(formData: FormData, key: string) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function getClientAddress(request: Request) {
+  const trustedAddress = request.headers.get("x-real-ip");
+  if (trustedAddress) return trustedAddress;
+  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+}
+
+function isRateLimited(request: Request) {
+  const now = Date.now();
+  for (const [address, bucket] of rateLimitBuckets) {
+    if (bucket.resetAt <= now) rateLimitBuckets.delete(address);
+  }
+
+  const address = getClientAddress(request);
+  const current = rateLimitBuckets.get(address);
+  if (!current || current.resetAt <= now) {
+    rateLimitBuckets.set(address, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  if (current.count >= RATE_LIMIT_MAX_REQUESTS) return true;
+
+  current.count += 1;
+  return false;
+}
+
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
   if (origin && origin !== new URL(request.url).origin) {
     return Response.json({ message: "This request could not be verified. Please refresh and try again." }, { status: 403 });
   }
 
+  if (isRateLimited(request)) {
+    return Response.json({ message: "Too many requests. Please wait a little while, or contact the academy on WhatsApp." }, { status: 429 });
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.CONSULTATION_FROM_EMAIL;
+  const to = process.env.CONSULTATION_TO_EMAIL || "atmindcraft@gmail.com";
+  const missingEnvironmentVariables = [
+    !apiKey && "RESEND_API_KEY",
+    !from && "CONSULTATION_FROM_EMAIL",
+  ].filter((name): name is string => Boolean(name));
   if (!apiKey || !from) {
-    console.error("Consultation email is not configured.");
+    console.error("Consultation email configuration is incomplete.", {
+      missingEnvironmentVariables,
+    });
     return Response.json({ message: "Consultation requests are temporarily unavailable. Please contact the academy by phone or WhatsApp." }, { status: 503 });
   }
 
@@ -93,6 +131,7 @@ export async function POST(request: Request) {
     if (error instanceof PayloadTooLargeError) {
       return Response.json({ message: "The request is too large. Please use a CV that is 4 MB or smaller." }, { status: 413 });
     }
+    console.error("Could not parse consultation form data.", error);
     return Response.json({ message: "The form data could not be read. Please check the fields and try again." }, { status: 400 });
   }
 
@@ -148,9 +187,9 @@ export async function POST(request: Request) {
   try {
     const { error } = await resend.emails.send({
       from,
-      to: ["atmindcraft@gmail.com"],
+      to: [to],
       replyTo: email,
-      subject: `Consultation request: ${program.title} (${tier}, ${tierDuration})`,
+      subject: `New consultation request from ${name}`,
       text: [
         "New MindCraft Academy consultation request",
         "",
@@ -160,20 +199,27 @@ export async function POST(request: Request) {
         `Program: ${program.title}`,
         `Tier: ${tier} (${tierDuration})`,
         "",
-        "Goal:",
+        "Note:",
         goal,
       ].join("\n"),
       ...(attachment ? { attachments: [attachment] } : {}),
     });
 
     if (error) {
-      console.error("Resend rejected a consultation email.", { name: error.name, statusCode: error.statusCode });
+      console.error("Resend rejected a consultation email.", {
+        message: error.message,
+        name: error.name,
+        statusCode: error.statusCode,
+      });
       return Response.json({ message: "We couldn’t send your request right now. Please try again or contact the academy directly." }, { status: 502 });
     }
-  } catch {
-    console.error("Consultation email request failed unexpectedly.");
+  } catch (error) {
+    console.error("Consultation email request failed unexpectedly.", {
+      message: error instanceof Error ? error.message : "Unknown error",
+      name: error instanceof Error ? error.name : "UnknownError",
+    });
     return Response.json({ message: "We couldn’t send your request right now. Please try again or contact the academy directly." }, { status: 502 });
   }
 
-  return Response.json({ message: "Your consultation request has been sent. The MindCraft Academy team will be in touch." });
+  return Response.json({ message: "Thank you, we will contact you soon" });
 }
