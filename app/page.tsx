@@ -63,9 +63,9 @@ export default function Home() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-cover grayscale"
+                className="photo-natural object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-ink/15 via-transparent to-ink/95" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/35 to-transparent" />
               <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
               <div className="absolute left-5 top-5 rounded-full border border-line bg-canvas/80 px-4 py-2.5 text-xs font-bold text-white backdrop-blur sm:left-7 sm:top-7">
                 DISCOVER. DEVELOP. DEPLOY.
