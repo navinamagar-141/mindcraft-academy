@@ -16,4 +16,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Do not change `public/images/culture/team-meeting.jpg`, used by the homepage hero, unless explicitly asked.
 - Make small, single-file changes where possible. Ask before making a decision that changes the design or data flow.
 - Never put real keys in `.env.example` or in code.
+- Never copy values from `.env.local` into `.env.example`. `.env.example` holds empty values only. Never print or attach secrets in chat.
 - Run the build before finishing.
