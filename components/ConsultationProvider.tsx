@@ -10,7 +10,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { ArrowUpRight, LoaderCircle, MessageCircle, X } from "lucide-react";
+import { ArrowUpRight, Check, LoaderCircle, MessageCircle, X } from "lucide-react";
 import { programs } from "@/lib/programs";
 
 type Tier = "Basic" | "Advanced";
@@ -252,9 +252,10 @@ function ConsultationModal({
           <p
             role={status.kind === "error" ? "alert" : "status"}
             className={`mt-4 rounded-lg border p-3 text-sm leading-6 ${
-              status.kind === "error" ? "border-white/30 bg-white/10 text-white" : "border-line bg-white/5 text-secondary"
+              status.kind === "error" ? "border-white/30 bg-white/10 text-white" : "border-white/40 bg-white/5 text-white"
             }`}
           >
+            {status.kind === "success" && <Check size={16} className="mr-2 inline-block align-[-3px]" aria-hidden="true" />}
             {status.message}
             {status.kind === "error" && (
               <>
